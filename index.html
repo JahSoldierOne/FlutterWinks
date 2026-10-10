@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flutter Winks by Mimi | Luxury Beauty Spa </title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Playfair Display & Cormorant Garamond for luxury headers, Montserrat for clean body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        nude: {
+                            50: '#FAF6F0',
+                            100: '#F7F0EA',
+                            200: '#EFE3D9',
+                            300: '#E2CEBF',
+                            400: '#CDB19B',
+                            500: '#B89379',
+                        },
+                        blush: {
+                            50: '#FDF7F7',
+                            100: '#F7EBEB',
+                            200: '#ECCFD0',
+                            300: '#E0B2B5',
+                            400: '#D29195',
+                        },
+                        brown: {
+                            800: '#4A3525',
+                            900: '#342317',
+                            950: '#23160D',
+                        },
+                        gold: {
+                            300: '#EED9A2',
+                            400: '#E4C780',
+                            500: '#C5A059',
+                            600: '#A8823E',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Cormorant Garamond', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                        cormorant: ['"Cormorant Garamond"', 'serif']
+                    },
+                    backgroundImage: {
+                        'radial-glow': 'radial-gradient(circle at center, rgba(228, 199, 128, 0.15) 0%, transparent 70%)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar & luxury styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF6F0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C5A059;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #A8823E;
+        }
+
+        .gold-border-gradient {
+            border-image: linear-gradient(to right, #E4C780, #C5A059, #E4C780) 1;
+        }
+
+        .backdrop-blur-luxury {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Subtle float animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Shimmer effect for CTA buttons */
+        .btn-gold-shimmer {
+            background: linear-gradient(135deg, #C5A059 0%, #E4C780 50%, #A8823E 100%);
+            background-size: 200% auto;
+            transition: 0.4s ease-in-out;
+        }
+        .btn-gold-shimmer:hover {
+            background-position: right center;
+            box-shadow: 0 8px 25px rgba(197, 160, 89, 0.35);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(228, 199, 128, 0.25);
+        }
+
+        /* Hide elements on mobile bottom nav padding bottom */
+        body {
+            padding-bottom: 70px;
+        }
+        @media (min-width: 768px) {
+            body {
+                padding-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#FAF6F0] text-brown-900 font-sans antialiased selection:bg-blush-200 selection:text-brown-900">
+
+    <!-- DESKTOP & MOBILE HEADER NAV -->
+    <header id="site-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-[#FAF6F0]/90 backdrop-blur-luxury border-b border-nude-200/60 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-full bg-brown-900 text-gold-400 flex items-center justify-center font-serif text-xl font-bold shadow-md border border-gold-400/40 group-hover:border-gold-400 transition-all">
+                        FW
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif text-xl md:text-2xl font-semibold tracking-wide text-brown-900 group-hover:text-gold-600 transition-colors">Flutter Winks</span>
+                        <span class="text-[10px] uppercase tracking-[0.25em] text-gold-600 font-medium">by Mimi</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wider uppercase text-brown-800">
+                    <a href="#about" class="hover:text-gold-600 transition-colors">About Us</a>
+                    <a href="#services" class="hover:text-gold-600 transition-colors">Services & Menu</a>
+                    <a href="#gallery" class="hover:text-gold-600 transition-colors">Gallery</a>
+                    <a href="#testimonials" class="hover:text-gold-600 transition-colors">Reviews</a>
+                    <a href="#contact" class="hover:text-gold-600 transition-colors">Contact</a>
+                </nav>
+
+                <!-- Desktop CTA Button -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button onclick="openBookingModal()" class="btn-gold-shimmer text-brown-950 font-semibold px-6 py-2.5 rounded-full text-xs uppercase tracking-widest shadow-sm hover:shadow-lg transition-all flex items-center gap-2">
+                        <i data-lucide="calendar" class="w-4 h-4"></i> Book Appointment
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex md:hidden items-center gap-2">
+                    <button onclick="openBookingModal()" class="btn-gold-shimmer text-brown-950 font-semibold px-3.5 py-1.5 rounded-full text-[11px] uppercase tracking-wider">
+                        Book
+                    </button>
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 text-brown-900 hover:text-gold-600 focus:outline-none">
+                        <i data-lucide="menu" id="menu-icon-open" class="w-6 h-6"></i>
+                        <i data-lucide="x" id="menu-icon-close" class="w-6 h-6 hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-dropdown" class="hidden md:hidden bg-[#FAF6F0] border-b border-nude-200 px-6 py-6 shadow-xl space-y-4">
+            <a href="#about" onclick="toggleMobileMenu()" class="block text-sm uppercase tracking-wider font-medium text-brown-800 hover:text-gold-600">About Us</a>
+            <a href="#services" onclick="toggleMobileMenu()" class="block text-sm uppercase tracking-wider font-medium text-brown-800 hover:text-gold-600">Services & Menu</a>
+            <a href="#gallery" onclick="toggleMobileMenu()" class="block text-sm uppercase tracking-wider font-medium text-brown-800 hover:text-gold-600">Gallery</a>
+            <a href="#testimonials" onclick="toggleMobileMenu()" class="block text-sm uppercase tracking-wider font-medium text-brown-800 hover:text-gold-600">Client Reviews</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block text-sm uppercase tracking-wider font-medium text-brown-800 hover:text-gold-600">Contact & Hours</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative pt-24 md:pt-32 pb-20 md:pb-32 overflow-hidden bg-gradient-to-b from-[#FAF6F0] via-[#F7F0EA] to-[#FAF6F0]">
+        <!-- Background subtle decorative elements -->
+        <div class="absolute top-1/4 -left-20 w-80 h-80 rounded-full bg-blush-200/40 blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-0 w-96 h-96 rounded-full bg-gold-300/20 blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+                <!-- Hero Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blush-100 border border-blush-300/50 text-brown-900 text-xs font-medium uppercase tracking-widest">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold-600"></i>
+                        Luxury Beauty & Wellness Spa
+                    </div>
+
+                    <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-semibold text-brown-950 leading-tight">
+                        Enhancing Your <br class="hidden sm:inline"/>
+                        <span class="italic font-normal text-gold-600 font-cormorant">Natural Beauty</span>
+                    </h1>
+
+                    <p class="text-brown-800/80 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Welcome to Flutter Winks by Mimi. Experience high-end lash extensions, glowing facial rituals, soothing massage therapies, precision brow sculpting, and flawless nail care in a serene Mount Pleasant sanctuary.
+                    </p>
+
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <button onclick="openBookingModal()" class="w-full sm:w-auto btn-gold-shimmer text-brown-950 font-semibold px-8 py-4 rounded-full text-xs uppercase tracking-widest shadow-md flex items-center justify-center gap-3">
+                            <i data-lucide="calendar" class="w-4 h-4"></i> Reserve Appointment
+                        </button>
+                        <a href="#services" class="w-full sm:w-auto px-8 py-4 rounded-full border border-brown-800/30 text-brown-900 font-medium text-xs uppercase tracking-widest hover:border-gold-600 hover:text-gold-600 transition-all text-center">
+                            Explore Service Menu
+                        </a>
+                    </div>
+
+                    <!-- Quick Highlights Strip -->
+                    <div class="pt-8 border-t border-brown-900/10 grid grid-cols-3 gap-4 text-center lg:text-left">
+                        <div>
+                            <div class="font-serif text-2xl font-bold text-brown-900">100%</div>
+                            <div class="text-[11px] text-brown-800/70 uppercase tracking-wider mt-0.5">Hygienic Care</div>
+                        </div>
+                        <div>
+                            <div class="font-serif text-2xl font-bold text-brown-900">Premium</div>
+                            <div class="text-[11px] text-brown-800/70 uppercase tracking-wider mt-0.5">Spa Products</div>
+                        </div>
+                        <div>
+                            <div class="font-serif text-2xl font-bold text-brown-900">4.9 ★</div>
+                            <div class="text-[11px] text-brown-800/70 uppercase tracking-wider mt-0.5">Client Rating</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image Composition -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Decorative Frame Behind Image -->
+                        <div class="absolute -inset-4 rounded-t-full rounded-b-[180px] border-2 border-gold-500/30 transform rotate-2"></div>
+
+                        <!-- Main Image Card -->
+                        <div class="relative rounded-t-full rounded-b-[180px] overflow-hidden shadow-2xl border-4 border-white">
+                            <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?auto=format&fit=crop&q=80&w=800"
+                                 alt="Flutter Winks Serene Spa Treatment"
+                                 class="w-full h-[460px] sm:h-[520px] object-cover hover:scale-105 transition-transform duration-700">
+
+                            <!-- Overlaid Subtle Gradient -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-brown-950/40 via-transparent to-transparent"></div>
+                        </div>
+
+                        <!-- Floating Accent Card -->
+                        <div class="absolute -bottom-6 -left-6 glass-card p-4 rounded-2xl shadow-xl flex items-center gap-3 border border-gold-400/30 max-w-[220px]">
+                            <div class="w-10 h-10 rounded-full bg-blush-200 text-brown-900 flex items-center justify-center shrink-0">
+                                <i data-lucide="heart" class="w-5 h-5 text-gold-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-brown-900">Mimi’s Touch</p>
+                                <p class="text-[10px] text-brown-800/70">Custom Lash & Brow Artistry</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+                <!-- About Grid Imagery -->
+                <div class="grid grid-cols-2 gap-4 relative">
+                    <div class="space-y-4">
+                        <img src="https://images.unsplash.com/photo-1512290900676-26c2a52595b8?auto=format&fit=crop&q=80&w=500"
+                             alt="Luxury Lashes" class="rounded-2xl shadow-md h-60 w-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=500"
+                             alt="Facial Treatment" class="rounded-2xl shadow-md h-44 w-full object-cover">
+                    </div>
+                    <div class="space-y-4 pt-8">
+                        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&q=80&w=500"
+                             alt="Luxury Manicure" class="rounded-2xl shadow-md h-44 w-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=500"
+                             alt="Spa Relaxation" class="rounded-2xl shadow-md h-60 w-full object-cover">
+                    </div>
+                </div>
+
+                <!-- About Text Content -->
+                <div class="space-y-6">
+                    <div class="inline-block border-b-2 border-gold-500 pb-1 text-xs uppercase tracking-widest text-gold-600 font-semibold">
+                        The Flutter Winks Experience
+                    </div>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-brown-950">
+                        Where Sophistication Meets <br class="hidden sm:inline"/>
+                        <span class="italic text-gold-600 font-cormorant font-normal">Personalized Beauty</span>
+                    </h2>
+                    <p class="text-brown-800/80 leading-relaxed text-sm sm:text-base font-light">
+                        Located in the quiet, prestigious neighborhood of Mount Pleasant in Harare, **Flutter Winks by Mimi** was founded with one mission: to elevate your natural beauty while giving you a serene sanctuary to unwind, refresh, and recharge.
+                    </p>
+                    <p class="text-brown-800/80 leading-relaxed text-sm sm:text-base font-light">
+                        Whether you are indulging in our meticulously applied lash extensions, deep-cleansing facial rituals, tension-relieving massages, or pampering nail services, every treatment is delivered with surgical hygiene, warm hospitality, and bespoke attention to detail.
+                    </p>
+
+                    <!-- Feature Bullet Points -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="flex items-start gap-3 p-3 rounded-xl bg-nude-50 border border-nude-200">
+                            <div class="w-8 h-8 rounded-full bg-gold-400/20 text-gold-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="shield-check" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-semibold text-brown-900 uppercase tracking-wider">Hygienic Excellence</h4>
+                                <p class="text-[11px] text-brown-800/70 mt-0.5">Sterilized equipment & pristine environment</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 p-3 rounded-xl bg-nude-50 border border-nude-200">
+                            <div class="w-8 h-8 rounded-full bg-gold-400/20 text-gold-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="sparkle" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-semibold text-brown-900 uppercase tracking-wider">Premium Products</h4>
+                                <p class="text-[11px] text-brown-800/70 mt-0.5">Skin-friendly, high-grade formulations</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 p-3 rounded-xl bg-nude-50 border border-nude-200">
+                            <div class="w-8 h-8 rounded-full bg-gold-400/20 text-gold-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="user-check" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-semibold text-brown-900 uppercase tracking-wider">Custom Lash & Brow</h4>
+                                <p class="text-[11px] text-brown-800/70 mt-0.5">Mapped individually to your face shape</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 p-3 rounded-xl bg-nude-50 border border-nude-200">
+                            <div class="w-8 h-8 rounded-full bg-gold-400/20 text-gold-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="coffee" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-semibold text-brown-900 uppercase tracking-wider">Complimentary Beverages</h4>
+                                <p class="text-[11px] text-brown-800/70 mt-0.5">Herbal teas, wines & refreshments</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <button onclick="openBookingModal()" class="btn-gold-shimmer text-brown-950 font-semibold px-6 py-3 rounded-full text-xs uppercase tracking-widest shadow-md inline-flex items-center gap-2">
+                            <i data-lucide="clock" class="w-4 h-4"></i> Reserve Your Pamper Time
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES & PRICING SECTION -->
+    <section id="services" class="py-20 bg-[#FAF6F0] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-gold-600">Our Service Menu & Pricing</span>
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold text-brown-950">
+                    Curated Beauty Treatments
+                </h2>
+                <p class="text-brown-800/80 text-sm sm:text-base font-light">
+                    Explore our full selection of luxury services. Click "Book Service" on any treatment to open our instant online booking widget.
+                </p>
+
+                <!-- Category Tab Selector -->
+                <div class="pt-6 flex flex-wrap items-center justify-center gap-2 sm:gap-3" id="service-tabs">
+                    <button onclick="filterServices('all')" id="tab-all" class="tab-btn px-5 py-2.5 rounded-full text-xs font-medium tracking-wider uppercase transition-all bg-brown-900 text-gold-300 shadow-md">
+                        All Services
+                    </button>
+                    <button onclick="filterServices('lash-brow')" id="tab-lash-brow" class="tab-btn px-5 py-2.5 rounded-full text-xs font-medium tracking-wider uppercase transition-all bg-white border border-nude-200 text-brown-800 hover:border-gold-500">
+                        Lash & Brow
+                    </button>
+                    <button onclick="filterServices('facials')" id="tab-facials" class="tab-btn px-5 py-2.5 rounded-full text-xs font-medium tracking-wider uppercase transition-all bg-white border border-nude-200 text-brown-800 hover:border-gold-500">
+                        Facials
+                    </button>
+                    <button onclick="filterServices('massage')" id="tab-massage" class="tab-btn px-5 py-2.5 rounded-full text-xs font-medium tracking-wider uppercase transition-all bg-white border border-nude-200 text-brown-800 hover:border-gold-500">
+                        Massage Therapy
+                    </button>
+                    <button onclick="filterServices('nails')" id="tab-nails" class="tab-btn px-5 py-2.5 rounded-full text-xs font-medium tracking-wider uppercase transition-all bg-white border border-nude-200 text-brown-800 hover:border-gold-500">
+                        Nails
+                    </button>
+                    <button onclick="filterServices('waxing')" id="tab-waxing" class="tab-btn px-5 py-2.5 rounded-full text-xs font-medium tracking-wider uppercase transition-all bg-white border border-nude-200 text-brown-800 hover:border-gold-500">
+                        Waxing
+                    </button>
+                </div>
+            </div>
+
+            <!-- Service Cards Container -->
+            <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Javascript will dynamically inject services here -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section id="gallery" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-semibold uppercase tracking-widest text-gold-600">Visual Inspiration</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-brown-950 mt-1">
+                    The Flutter Winks Gallery
+                </h2>
+                <p class="text-brown-800/80 text-xs sm:text-sm mt-2">
+                    A glimpse into our serene spa space, delicate lash artistry, glowing facials, and crisp manicures.
+                </p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+
+                <div class="group relative overflow-hidden rounded-2xl h-64 bg-nude-100">
+                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&q=80&w=600"
+                         alt="Lash Extensions Close-up" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-brown-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-serif italic">Classic Lash Extensions</span>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl h-64 bg-nude-100">
+                    <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=600"
+                         alt="Spa Room Ambience" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-brown-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-serif italic">Serene Spa Atmosphere</span>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl h-64 bg-nude-100">
+                    <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=600"
+                         alt="Glow Facial" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-brown-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-serif italic">Signature Deep Hydration Facial</span>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl h-64 bg-nude-100">
+                    <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&q=80&w=600"
+                         alt="Nail Artistry" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-brown-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-serif italic">Gel Polish & Nail Care</span>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl h-64 bg-nude-100">
+                    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=600"
+                         alt="Massage Oils" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-brown-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-serif italic">Aromatherapy Oils</span>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl h-64 bg-nude-100">
+                    <img src="https://images.unsplash.com/photo-1512290900676-26c2a52595b8?auto=format&fit=crop&q=80&w=600"
+                         alt="Brow Lamination" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-brown-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-serif italic">Precision Brow Tinting & Lamination</span>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl h-64 bg-nude-100">
+                    <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&q=80&w=600"
+                         alt="Pedicure Spa" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-brown-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-serif italic">Deluxe Spa Pedicure Bath</span>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl h-64 bg-nude-100">
+                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=600"
+                         alt="Full Body Massage" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-brown-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-serif italic">Swedish & Hot Stone Massage</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section id="testimonials" class="py-20 bg-[#FAF6F0] relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-xs font-semibold uppercase tracking-widest text-gold-600">Client Reviews</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-brown-950 mt-1">
+                    Loved by Beautiful Women in Harare
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Review Card 1 -->
+                <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-1 text-gold-500">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-brown-800/90 text-sm leading-relaxed italic font-light">
+                            "Mimi is an absolute perfectionist with lashes! My hybrid set lasts for weeks and looks incredibly natural yet glamorous. The Mount Pleasant spa location is so cozy and serene."
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-nude-200 flex items-center justify-between">
+                        <div>
+                            <p class="font-serif font-semibold text-brown-900 text-sm">Tariro M.</p>
+                            <p class="text-[11px] text-brown-800/60 uppercase">Regular Client</p>
+                        </div>
+                        <span class="text-xs font-semibold text-gold-600">Lashes & Brows</span>
+                    </div>
+                </div>
+
+                <!-- Review Card 2 -->
+                <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-1 text-gold-500">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-brown-800/90 text-sm leading-relaxed italic font-light">
+                            "I had the Deep Cleansing Glow Facial and Swedish Massage before my birthday. My skin was radiant and all my stress melted away. Unmatched hygiene and professional care!"
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-nude-200 flex items-center justify-between">
+                        <div>
+                            <p class="font-serif font-semibold text-brown-900 text-sm">Rumbidzai C.</p>
+                            <p class="text-[11px] text-brown-800/60 uppercase">Verified Guest</p>
+                        </div>
+                        <span class="text-xs font-semibold text-gold-600">Facial & Massage</span>
+                    </div>
+                </div>
+
+                <!-- Review Card 3 -->
+                <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-1 text-gold-500">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-brown-800/90 text-sm leading-relaxed italic font-light">
+                            "The best manicure and pedicure experience in Harare hands down. Mimi’s attention to detail, warm hospitality, and beautiful salon vibes make every visit feel like royalty."
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-nude-200 flex items-center justify-between">
+                        <div>
+                            <p class="font-serif font-semibold text-brown-900 text-sm">Chipo K.</p>
+                            <p class="text-[11px] text-brown-800/60 uppercase">Monthly Guest</p>
+                        </div>
+                        <span class="text-xs font-semibold text-gold-600">Nail Pamper</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EMBEDDED BOOKING CARD SECTION -->
+    <section id="book-section" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-2xl border border-gold-400/30 relative">
+
+                <div class="text-center mb-8">
+                    <div class="w-12 h-12 rounded-full bg-brown-900 text-gold-400 flex items-center justify-center mx-auto mb-3 shadow-md">
+                        <i data-lucide="calendar" class="w-6 h-6"></i>
+                    </div>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-brown-950">
+                        Online Appointment Scheduling
+                    </h2>
+                    <p class="text-brown-800/80 text-xs sm:text-sm mt-1">
+                        Select your desired service below to instantly reserve your spa time slot.
+                    </p>
+                </div>
+
+                <!-- Direct Embedded Trigger Widget -->
+                <div class="bg-[#FAF6F0] p-6 rounded-2xl border border-nude-200 text-center space-y-4">
+                    <p class="text-sm text-brown-900 font-medium">
+                        Instant booking system is active & ready for requests.
+                    </p>
+                    <button onclick="openBookingModal()" class="btn-gold-shimmer text-brown-950 font-semibold px-8 py-4 rounded-full text-xs uppercase tracking-widest shadow-lg inline-flex items-center gap-2">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i> Launch Booking Portal
+                    </button>
+                    <p class="text-[11px] text-brown-800/60">
+                        Need quick custom help? Call or WhatsApp us at <a href="tel:0781494365" class="text-gold-600 underline font-semibold">0781494365</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & LOCATION SECTION -->
+    <section id="contact" class="py-20 bg-[#FAF6F0] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+                <!-- Contact Details -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div>
+                        <span class="text-xs font-semibold uppercase tracking-widest text-gold-600">Connect With Us</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-brown-950 mt-1">
+                            Visit Our Sanctuary
+                        </h2>
+                        <p class="text-brown-800/80 text-xs sm:text-sm mt-2 leading-relaxed">
+                            We are located in Mount Pleasant, Harare. Reach out to schedule an appointment or ask any questions regarding our treatments.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 pt-2">
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-nude-200">
+                            <div class="w-10 h-10 rounded-full bg-blush-100 text-gold-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-semibold text-brown-900 uppercase tracking-wider">Address</h4>
+                                <p class="text-xs text-brown-800/80 mt-1 font-light">1 Fairbairn Drive, Mount Pleasant, Harare, Zimbabwe</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-nude-200">
+                            <div class="w-10 h-10 rounded-full bg-blush-100 text-gold-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="phone" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-semibold text-brown-900 uppercase tracking-wider">Phone & WhatsApp</h4>
+                                <p class="text-xs text-brown-800/80 mt-1 font-light">
+                                    <a href="tel:0781494365" class="hover:text-gold-600 transition-colors">0781494365</a> /
+                                    <a href="https://wa.me/263781494365" target="_blank" class="hover:text-gold-600 transition-colors font-medium text-emerald-700">WhatsApp Us</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-nude-200">
+                            <div class="w-10 h-10 rounded-full bg-blush-100 text-gold-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-semibold text-brown-900 uppercase tracking-wider">Email</h4>
+                                <p class="text-xs text-brown-800/80 mt-1 font-light">
+                                    <a href="mailto:mimigwasi@gmail.com" class="hover:text-gold-600 transition-colors">mimigwasi@gmail.com</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-white border border-nude-200">
+                            <div class="w-10 h-10 rounded-full bg-blush-100 text-gold-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="instagram" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-semibold text-brown-900 uppercase tracking-wider">Instagram</h4>
+                                <p class="text-xs text-brown-800/80 mt-1 font-light">
+                                    <a href="https://instagram.com/flutterwinksbymimi" target="_blank" class="hover:text-gold-600 transition-colors text-pink-700 font-medium">@flutterwinksbymimi</a>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Contact Interactive Form & Map -->
+                <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border border-nude-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-serif text-xl font-semibold text-brown-950 mb-2">Send a Direct Message</h3>
+                        <p class="text-xs text-brown-800/70 mb-6">Have a custom inquiry or special request? Leave a message below.</p>
+
+                        <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-[11px] font-semibold text-brown-900 uppercase tracking-wider mb-1">Your Name</label>
+                                    <input type="text" required placeholder="e.g. Sarah Moyo" class="w-full px-4 py-2.5 rounded-xl border border-nude-200 bg-nude-50/50 text-xs focus:outline-none focus:border-gold-500">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-semibold text-brown-900 uppercase tracking-wider mb-1">Phone Number</label>
+                                    <input type="tel" required placeholder="e.g. 077 123 4567" class="w-full px-4 py-2.5 rounded-xl border border-nude-200 bg-nude-50/50 text-xs focus:outline-none focus:border-gold-500">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-[11px] font-semibold text-brown-900 uppercase tracking-wider mb-1">Email Address</label>
+                                <input type="email" required placeholder="sarah@example.com" class="w-full px-4 py-2.5 rounded-xl border border-nude-200 bg-nude-50/50 text-xs focus:outline-none focus:border-gold-500">
+                            </div>
+
+                            <div>
+                                <label class="block text-[11px] font-semibold text-brown-900 uppercase tracking-wider mb-1">Message</label>
+                                <textarea rows="3" required placeholder="Tell us how we can help you..." class="w-full px-4 py-2.5 rounded-xl border border-nude-200 bg-nude-50/50 text-xs focus:outline-none focus:border-gold-500 resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full btn-gold-shimmer text-brown-950 font-semibold py-3 rounded-xl text-xs uppercase tracking-widest shadow-md">
+                                Send Message
+                            </button>
+                        </form>
+
+                        <!-- Alert Box for Contact Submit -->
+                        <div id="contact-alert" class="hidden mt-4 p-3 rounded-xl bg-emerald-50 text-emerald-800 text-xs text-center border border-emerald-200">
+                            Thank you! Your message has been received. Mimi will respond shortly.
+                        </div>
+                    </div>
+
+                    <!-- Map Placeholder -->
+                    <div class="mt-8 pt-6 border-t border-nude-200">
+                        <div class="rounded-2xl overflow-hidden bg-nude-100 border border-nude-200 h-36 flex items-center justify-center text-center p-4 relative">
+                            <div class="space-y-1">
+                                <i data-lucide="map" class="w-6 h-6 text-gold-600 mx-auto"></i>
+                                <p class="text-xs font-semibold text-brown-900">Mount Pleasant, Harare</p>
+                                <p class="text-[10px] text-brown-800/60">1 Fairbairn Drive • Easy parking available</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brown-950 text-nude-100 py-12 border-t border-brown-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-brown-900">
+
+                <div class="space-y-3 md:col-span-1">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full bg-gold-500 text-brown-950 font-serif font-bold flex items-center justify-center text-sm">FW</div>
+                        <span class="font-serif text-lg font-semibold text-white">Flutter Winks</span>
+                    </div>
+                    <p class="text-xs text-nude-300/80 leading-relaxed font-light">
+                        Luxury beauty spa offering premier lash extensions, facial treatments, soothing massages, brow tinting, waxing & nail services.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-semibold uppercase tracking-widest text-gold-400 mb-3">Operating Hours</h4>
+                    <ul class="space-y-1.5 text-xs text-nude-300/80 font-light">
+                        <li class="flex justify-between"><span>Mon - Sat:</span> <span>8:30 AM - 5:30 PM</span></li>
+                        <li class="flex justify-between"><span>Sunday:</span> <span>By Appointment</span></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-semibold uppercase tracking-widest text-gold-400 mb-3">Quick Navigation</h4>
+                    <ul class="space-y-1.5 text-xs text-nude-300/80 font-light">
+                        <li><a href="#about" class="hover:text-gold-400 transition-colors">About Mimi</a></li>
+                        <li><a href="#services" class="hover:text-gold-400 transition-colors">Full Treatment Menu</a></li>
+                        <li><a href="#gallery" class="hover:text-gold-400 transition-colors">Photo Gallery</a></li>
+                        <li><a href="#book-section" onclick="openBookingModal()" class="hover:text-gold-400 transition-colors">Book Online</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-semibold uppercase tracking-widest text-gold-400 mb-3">Spa Location</h4>
+                    <p class="text-xs text-nude-300/80 font-light leading-relaxed">
+                        1 Fairbairn Drive, Mount Pleasant<br/>Harare, Zimbabwe
+                    </p>
+                    <div class="mt-3 flex items-center gap-3 text-gold-400">
+                        <a href="https://instagram.com/flutterwinksbymimi" target="_blank" class="p-2 rounded-full bg-brown-900 hover:bg-gold-500 hover:text-brown-950 transition-colors">
+                            <i data-lucide="instagram" class="w-4 h-4"></i>
+                        </a>
+                        <a href="https://wa.me/263781494365" target="_blank" class="p-2 rounded-full bg-brown-900 hover:bg-gold-500 hover:text-brown-950 transition-colors">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-nude-400/60">
+                <p>&copy; 2026 Flutter Winks by Mimi. All rights reserved. Enhancing Your Natural Beauty.</p>
+                <p class="mt-2 sm:mt-0">Crafted with elegance in Harare</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MOBILE APP BOTTOM NAVIGATION BAR -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#FAF6F0]/95 backdrop-blur-luxury border-t border-nude-200/80 py-2 px-4 flex items-center justify-around shadow-lg">
+        <a href="#home" class="flex flex-col items-center gap-0.5 text-brown-800 hover:text-gold-600">
+            <i data-lucide="home" class="w-5 h-5"></i>
+            <span class="text-[9px] font-medium uppercase tracking-wider">Home</span>
+        </a>
+        <a href="#services" class="flex flex-col items-center gap-0.5 text-brown-800 hover:text-gold-600">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+            <span class="text-[9px] font-medium uppercase tracking-wider">Services</span>
+        </a>
+        <button onclick="openBookingModal()" class="flex flex-col items-center justify-center -mt-5">
+            <div class="w-12 h-12 rounded-full bg-gold-500 text-brown-950 flex items-center justify-center shadow-lg border-2 border-white">
+                <i data-lucide="calendar" class="w-5 h-5"></i>
+            </div>
+            <span class="text-[9px] font-semibold text-gold-600 uppercase tracking-wider mt-0.5">Book</span>
+        </button>
+        <a href="#gallery" class="flex flex-col items-center gap-0.5 text-brown-800 hover:text-gold-600">
+            <i data-lucide="image" class="w-5 h-5"></i>
+            <span class="text-[9px] font-medium uppercase tracking-wider">Gallery</span>
+        </a>
+        <a href="#contact" class="flex flex-col items-center gap-0.5 text-brown-800 hover:text-gold-600">
+            <i data-lucide="map-pin" class="w-5 h-5"></i>
+            <span class="text-[9px] font-medium uppercase tracking-wider">Contact</span>
+        </a>
+    </div>
+
+    <!-- INTERACTIVE ONLINE BOOKING MODAL -->
+    <div id="booking-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-brown-950/60 backdrop-blur-sm transition-opacity duration-300">
+        <div class="bg-[#FAF6F0] border border-gold-400/30 rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl relative flex flex-col">
+
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-nude-200 flex items-center justify-between sticky top-0 bg-[#FAF6F0] z-10">
+                <div>
+                    <h3 class="font-serif text-xl font-semibold text-brown-950">Appointment Booking</h3>
+                    <p class="text-xs text-brown-800/70">Flutter Winks by Mimi • Mount Pleasant</p>
+                </div>
+                <button onclick="closeBookingModal()" class="p-2 rounded-full hover:bg-nude-200 text-brown-800 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content - Multi Step Booking Portal -->
+            <div class="p-6 space-y-6 flex-1">
+
+                <!-- Progress Stepper -->
+                <div class="flex items-center justify-between border-b border-nude-200 pb-4">
+                    <div id="step-pill-1" class="flex items-center gap-2 text-xs font-semibold text-gold-600">
+                        <span class="w-6 h-6 rounded-full bg-gold-500 text-brown-950 flex items-center justify-center text-[11px]">1</span>
+                        <span>Service</span>
+                    </div>
+                    <div id="step-pill-2" class="flex items-center gap-2 text-xs font-medium text-brown-800/40">
+                        <span class="w-6 h-6 rounded-full bg-nude-200 text-brown-800 flex items-center justify-center text-[11px]">2</span>
+                        <span>Date & Time</span>
+                    </div>
+                    <div id="step-pill-3" class="flex items-center gap-2 text-xs font-medium text-brown-800/40">
+                        <span class="w-6 h-6 rounded-full bg-nude-200 text-brown-800 flex items-center justify-center text-[11px]">3</span>
+                        <span>Details</span>
+                    </div>
+                </div>
+
+                <!-- STEP 1: SELECT CATEGORY & SERVICE -->
+                <div id="booking-step-1" class="space-y-4">
+                    <label class="block text-xs font-semibold text-brown-900 uppercase tracking-wider">Select Category</label>
+                    <select id="modal-category-select" onchange="updateModalServiceOptions()" class="w-full px-4 py-3 rounded-xl border border-nude-200 bg-white text-xs font-medium focus:outline-none focus:border-gold-500">
+                        <option value="lash-brow">Lash & Brow Artistry</option>
+                        <option value="facials">Facials & Skin Rituals</option>
+                        <option value="massage">Massage Therapy</option>
+                        <option value="nails">Nail Care & Gel Spa</option>
+                        <option value="waxing">Waxing Treatments</option>
+                    </select>
+
+                    <label class="block text-xs font-semibold text-brown-900 uppercase tracking-wider pt-2">Select Specific Service</label>
+                    <select id="modal-service-select" class="w-full px-4 py-3 rounded-xl border border-nude-200 bg-white text-xs font-medium focus:outline-none focus:border-gold-500">
+                        <!-- Populated dynamically via JavaScript -->
+                    </select>
+
+                    <button onclick="goToStep(2)" class="w-full mt-4 btn-gold-shimmer text-brown-950 font-semibold py-3.5 rounded-xl text-xs uppercase tracking-widest shadow-md">
+                        Continue to Date & Time
+                    </button>
+                </div>
+
+                <!-- STEP 2: SELECT DATE & TIME SLOT -->
+                <div id="booking-step-2" class="space-y-4 hidden">
+                    <label class="block text-xs font-semibold text-brown-900 uppercase tracking-wider">Select Date</label>
+                    <input type="date" id="booking-date" class="w-full px-4 py-3 rounded-xl border border-nude-200 bg-white text-xs font-medium focus:outline-none focus:border-gold-500">
+
+                    <label class="block text-xs font-semibold text-brown-900 uppercase tracking-wider pt-2">Select Time Slot</label>
+                    <div class="grid grid-cols-3 gap-2" id="time-slots-container">
+                        <button type="button" onclick="selectTimeSlot(this)" class="time-slot-btn border border-nude-200 bg-white py-2.5 rounded-xl text-xs font-medium text-brown-800 hover:border-gold-500">09:00 AM</button>
+                        <button type="button" onclick="selectTimeSlot(this)" class="time-slot-btn border border-nude-200 bg-white py-2.5 rounded-xl text-xs font-medium text-brown-800 hover:border-gold-500">10:30 AM</button>
+                        <button type="button" onclick="selectTimeSlot(this)" class="time-slot-btn border border-nude-200 bg-white py-2.5 rounded-xl text-xs font-medium text-brown-800 hover:border-gold-500">12:00 PM</button>
+                        <button type="button" onclick="selectTimeSlot(this)" class="time-slot-btn border border-nude-200 bg-white py-2.5 rounded-xl text-xs font-medium text-brown-800 hover:border-gold-500">01:30 PM</button>
+                        <button type="button" onclick="selectTimeSlot(this)" class="time-slot-btn border border-nude-200 bg-white py-2.5 rounded-xl text-xs font-medium text-brown-800 hover:border-gold-500">03:00 PM</button>
+                        <button type="button" onclick="selectTimeSlot(this)" class="time-slot-btn border border-nude-200 bg-white py-2.5 rounded-xl text-xs font-medium text-brown-800 hover:border-gold-500">04:30 PM</button>
+                    </div>
+
+                    <div class="flex gap-3 pt-4">
+                        <button onclick="goToStep(1)" class="w-1/3 px-4 py-3.5 rounded-xl border border-nude-200 text-xs uppercase font-semibold text-brown-800">Back</button>
+                        <button onclick="goToStep(3)" class="w-2/3 btn-gold-shimmer text-brown-950 font-semibold py-3.5 rounded-xl text-xs uppercase tracking-widest shadow-md">
+                            Continue to Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 3: CLIENT DETAILS -->
+                <div id="booking-step-3" class="space-y-4 hidden">
+                    <div>
+                        <label class="block text-xs font-semibold text-brown-900 uppercase tracking-wider mb-1">Full Name</label>
+                        <input type="text" id="client-name" required placeholder="e.g. Nyasha Chitate" class="w-full px-4 py-3 rounded-xl border border-nude-200 bg-white text-xs focus:outline-none focus:border-gold-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-brown-900 uppercase tracking-wider mb-1">Phone Number (WhatsApp)</label>
+                        <input type="tel" id="client-phone" required placeholder="e.g. 078 123 4567" class="w-full px-4 py-3 rounded-xl border border-nude-200 bg-white text-xs focus:outline-none focus:border-gold-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-brown-900 uppercase tracking-wider mb-1">Email Address</label>
+                        <input type="email" id="client-email" required placeholder="name@domain.com" class="w-full px-4 py-3 rounded-xl border border-nude-200 bg-white text-xs focus:outline-none focus:border-gold-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-brown-900 uppercase tracking-wider mb-1">Special Notes or Lash/Skin Preferences</label>
+                        <textarea id="client-notes" rows="2" placeholder="Any allergies, previous extensions, or special requests..." class="w-full px-4 py-3 rounded-xl border border-nude-200 bg-white text-xs focus:outline-none focus:border-gold-500 resize-none"></textarea>
+                    </div>
+
+                    <div class="flex gap-3 pt-4">
+                        <button onclick="goToStep(2)" class="w-1/3 px-4 py-3.5 rounded-xl border border-nude-200 text-xs uppercase font-semibold text-brown-800">Back</button>
+                        <button onclick="confirmBooking()" class="w-2/3 btn-gold-shimmer text-brown-950 font-semibold py-3.5 rounded-xl text-xs uppercase tracking-widest shadow-md flex items-center justify-center gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4"></i> Complete Booking
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 4: CONFIRMATION SUMMARY -->
+                <div id="booking-step-4" class="text-center py-6 space-y-4 hidden">
+                    <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-md">
+                        <i data-lucide="check" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="font-serif text-2xl font-semibold text-brown-950">Appointment Reserved!</h4>
+                    <p class="text-xs text-brown-800/80 max-w-md mx-auto">
+                        Thank you for booking with Flutter Winks by Mimi. We have received your appointment request and sent a confirmation summary.
+                    </p>
+
+                    <div class="bg-white p-4 rounded-2xl border border-nude-200 text-left max-w-md mx-auto text-xs space-y-2">
+                        <div class="flex justify-between border-b border-nude-100 pb-1">
+                            <span class="text-brown-800/60">Booking Reference:</span>
+                            <span class="font-bold text-brown-900" id="summary-ref">#FW-8921</span>
+                        </div>
+                        <div class="flex justify-between border-b border-nude-100 pb-1">
+                            <span class="text-brown-800/60">Service:</span>
+                            <span class="font-semibold text-brown-900" id="summary-service">Classic Lash Extensions</span>
+                        </div>
+                        <div class="flex justify-between border-b border-nude-100 pb-1">
+                            <span class="text-brown-800/60">Date & Time:</span>
+                            <span class="font-semibold text-brown-900" id="summary-datetime">Oct 12, 2026 @ 10:30 AM</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-brown-800/60">Client:</span>
+                            <span class="font-semibold text-brown-900" id="summary-client">Nyasha Chitate</span>
+                        </div>
+                    </div>
+
+                    <p class="text-[11px] text-brown-800/60">
+                        Address: 1 Fairbairn Drive, Mount Pleasant, Harare
+                    </p>
+
+                    <button onclick="closeBookingModal()" class="btn-gold-shimmer text-brown-950 font-semibold px-8 py-3 rounded-xl text-xs uppercase tracking-widest shadow-md mt-4">
+                        Done & Return
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Full Service Menu Data from Spa Flyer
+        const servicesData = [
+            // Lash & Brow
+            { id: 'lb1', category: 'lash-brow', title: 'Classic Lash Extensions', price: '$30', duration: '90 mins', desc: 'Natural individual eyelash extensions for everyday effortless elegance.' },
+            { id: 'lb2', category: 'lash-brow', title: 'Hybrid Lash Extensions', price: '$35', duration: '105 mins', desc: 'A soft textured mix of classic and volume lashes for subtle glam.' },
+            { id: 'lb3', category: 'lash-brow', title: 'Volume Lash Extensions', price: '$40', duration: '120 mins', desc: 'Full, dense, fluffy lash fans creating a dramatic, luxurious flutter.' },
+            { id: 'lb4', category: 'lash-brow', title: 'Brow Lamination & Shaping', price: '$20', duration: '45 mins', desc: 'Keratin brow lift for fluffy, uniform, sleek eyebrow symmetry.' },
+            { id: 'lb5', category: 'lash-brow', title: 'Brow Tint & Threading', price: '$15', duration: '30 mins', desc: 'Precision brow shaping combined with rich color tint definition.' },
+
+            // Facials
+            { id: 'f1', category: 'facials', title: 'Deep Cleansing Glow Facial', price: '$35', duration: '60 mins', desc: 'Pore extraction, gentle exfoliation, and vitamin infusion for glowing skin.' },
+            { id: 'f2', category: 'facials', title: 'Hydrating Botanical Ritual', price: '$40', duration: '60 mins', desc: 'Deep moisture restoration ritual with soothing aloe and hyaluronic serum.' },
+            { id: 'f3', category: 'facials', title: 'Anti-Aging Gold Facial', price: '$50', duration: '75 mins', desc: 'Collagen boosting facial massage and gold peel-off mask for firm elasticity.' },
+
+            // Massage Therapy
+            { id: 'm1', category: 'massage', title: 'Full Body Swedish Massage', price: '$40', duration: '60 mins', desc: 'Classic soothing full body relaxation therapy using warm essential oils.' },
+            { id: 'm2', category: 'massage', title: 'Deep Tissue Tension Relief', price: '$50', duration: '60 mins', desc: 'Targeted pressure relieving deep muscular knots in shoulders and back.' },
+            { id: 'm3', category: 'massage', title: 'Aromatherapy Back & Neck', price: '$30', duration: '45 mins', desc: 'Stress relieving back rub infused with calming lavender & eucalyptus.' },
+
+            // Nails
+            { id: 'n1', category: 'nails', title: 'Deluxe Gel Manicure', price: '$20', duration: '45 mins', desc: 'Nail shaping, cuticle treatment, hand massage, and long-lasting gel polish.' },
+            { id: 'n2', category: 'nails', title: 'Spa Pedicure with Foot Scrub', price: '$25', duration: '60 mins', desc: 'Relaxing foot soak, exfoliation scrub, heel smoothing, and glossy polish.' },
+            { id: 'n3', category: 'nails', title: 'Full Mani & Pedi Combo', price: '$40', duration: '90 mins', desc: 'Complete hand and foot pamper package for head-to-toe polished perfection.' },
+
+            // Waxing
+            { id: 'w1', category: 'waxing', title: 'Full Leg Waxing', price: '$25', duration: '40 mins', desc: 'Silky smooth leg hair removal using gentle warm wax.' },
+            { id: 'w2', category: 'waxing', title: 'Underarm & Arms Wax', price: '$18', duration: '30 mins', desc: 'Clean and sensitive wax treatment for upper body smoothness.' },
+            { id: 'w3', category: 'waxing', title: 'Precision Bikini Wax', price: '$22', duration: '30 mins', desc: 'Hygienic and delicate bikini line hair removal.' }
+        ];
+
+        let selectedTime = '10:30 AM';
+
+        // Initialize App
+        window.addEventListener('DOMContentLoaded', () => {
+            renderServices('all');
+            updateModalServiceOptions();
+
+            // Set default date in date picker to tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const dateInput = document.getElementById('booking-date');
+            if(dateInput) {
+                dateInput.value = tomorrow.toISOString().split('T')[0];
+            }
+
+            // Re-render icons
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        });
+
+        // Render Service Cards
+        function renderServices(category) {
+            const container = document.getElementById('services-grid');
+            if(!container) return;
+
+            const filtered = category === 'all'
+                ? servicesData
+                : servicesData.filter(s => s.category === category);
+
+            container.innerHTML = filtered.map(service => `
+                <div class="glass-card rounded-3xl p-6 flex flex-col justify-between hover:shadow-xl transition-all duration-300 border border-nude-200 group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] uppercase font-semibold tracking-widest px-3 py-1 rounded-full bg-blush-100 text-brown-900">
+                                ${service.duration}
+                            </span>
+                            <span class="font-serif text-xl font-bold text-gold-600">
+                                ${service.price}
+                            </span>
+                        </div>
+                        <h3 class="font-serif text-lg font-semibold text-brown-950 group-hover:text-gold-600 transition-colors">
+                            ${service.title}
+                        </h3>
+                        <p class="text-xs text-brown-800/75 font-light leading-relaxed mt-2">
+                            ${service.desc}
+                        </p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-nude-200/60 flex items-center justify-between">
+                        <span class="text-[11px] text-brown-800/60 font-medium uppercase tracking-wider">
+                            Mount Pleasant
+                        </span>
+                        <button onclick="openBookingForService('${service.category}', '${service.id}')" class="text-xs font-semibold text-brown-900 group-hover:text-gold-600 flex items-center gap-1 transition-colors">
+                            Book Service <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            if (window.lucide) lucide.createIcons();
+        }
+
+        // Filter Tabs Logic
+        function filterServices(category) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-brown-900', 'text-gold-300', 'shadow-md');
+                btn.classList.add('bg-white', 'text-brown-800', 'border', 'border-nude-200');
+            });
+
+            const activeBtn = document.getElementById(`tab-${category}`);
+            if(activeBtn) {
+                activeBtn.classList.remove('bg-white', 'text-brown-800', 'border');
+                activeBtn.classList.add('bg-brown-900', 'text-gold-300', 'shadow-md');
+            }
+
+            renderServices(category);
+        }
+
+        // Open Modal from Specific Service Card
+        function openBookingForService(category, serviceId) {
+            const catSelect = document.getElementById('modal-category-select');
+            if(catSelect) catSelect.value = category;
+
+            updateModalServiceOptions();
+
+            const serviceSelect = document.getElementById('modal-service-select');
+            if(serviceSelect) serviceSelect.value = serviceId;
+
+            openBookingModal();
+        }
+
+        // Modal Open / Close
+        function openBookingModal() {
+            const modal = document.getElementById('booking-modal');
+            if(modal) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeBookingModal() {
+            const modal = document.getElementById('booking-modal');
+            if(modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Modal Category to Service Dropdown Sync
+        function updateModalServiceOptions() {
+            const category = document.getElementById('modal-category-select').value;
+            const serviceSelect = document.getElementById('modal-service-select');
+
+            const list = servicesData.filter(s => s.category === category);
+            serviceSelect.innerHTML = list.map(s => `
+                <option value="${s.id}">${s.title} — ${s.price} (${s.duration})</option>
+            `).join('');
+        }
+
+        // Stepper Navigation
+        function goToStep(step) {
+            document.getElementById('booking-step-1').classList.add('hidden');
+            document.getElementById('booking-step-2').classList.add('hidden');
+            document.getElementById('booking-step-3').classList.add('hidden');
+            document.getElementById('booking-step-4').classList.add('hidden');
+
+            document.getElementById(`booking-step-${step}`).classList.remove('hidden');
+
+            // Update Pill UI
+            for(let i = 1; i <= 3; i++) {
+                const pill = document.getElementById(`step-pill-${i}`);
+                if(i <= step) {
+                    pill.classList.remove('text-brown-800/40');
+                    pill.classList.add('text-gold-600');
+                } else {
+                    pill.classList.remove('text-gold-600');
+                    pill.classList.add('text-brown-800/40');
+                }
+            }
+        }
+
+        // Time Slot Selection
+        function selectTimeSlot(btn) {
+            document.querySelectorAll('.time-slot-btn').forEach(b => {
+                b.classList.remove('bg-gold-500', 'text-brown-950', 'font-bold');
+                b.classList.add('bg-white', 'text-brown-800');
+            });
+            btn.classList.remove('bg-white', 'text-brown-800');
+            btn.classList.add('bg-gold-500', 'text-brown-950', 'font-bold');
+            selectedTime = btn.innerText;
+        }
+
+        // Finalize Booking
+        function confirmBooking() {
+            const name = document.getElementById('client-name').value || 'Valued Guest';
+            const serviceId = document.getElementById('modal-service-select').value;
+            const serviceObj = servicesData.find(s => s.id === serviceId);
+            const dateVal = document.getElementById('booking-date').value;
+
+            document.getElementById('summary-ref').innerText = `#FW-${Math.floor(1000 + Math.random() * 9000)}`;
+            document.getElementById('summary-service').innerText = serviceObj ? serviceObj.title : 'Beauty Spa Service';
+            document.getElementById('summary-datetime').innerText = `${dateVal || 'Tomorrow'} @ ${selectedTime}`;
+            document.getElementById('summary-client').innerText = name;
+
+            goToStep(4);
+        }
+
+        // Mobile Dropdown Menu Toggle
+        function toggleMobileMenu() {
+            const dropdown = document.getElementById('mobile-dropdown');
+            const openIcon = document.getElementById('menu-icon-open');
+            const closeIcon = document.getElementById('menu-icon-close');
+
+            if(dropdown.classList.contains('hidden')) {
+                dropdown.classList.remove('hidden');
+                openIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            } else {
+                dropdown.classList.add('hidden');
+                openIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        }
+
+        // Handle Contact Form Submit
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const alert = document.getElementById('contact-alert');
+            if(alert) {
+                alert.classList.remove('hidden');
+                document.getElementById('contact-form').reset();
+                setTimeout(() => {
+                    alert.classList.add('hidden');
+                }, 5000);
+            }
+        }
+    </script>
+</body>
+</html>
